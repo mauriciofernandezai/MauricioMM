@@ -4,101 +4,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Mapa Mental de Habilidades y Herramientas</title>
+<script type="text/javascript" src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
+<link href="https://unpkg.com/vis-network@9.1.2/styles/vis-network.min.css" rel="stylesheet" type="text/css" />
 <style>
-  body {
-    background:#0f1123;
-    color:#fff;
-    font-family:'Segoe UI', sans-serif;
-    padding:40px;
-    margin:0;
-  }
-  .mindmap {
-    display:flex;
-    justify-content:center;
-  }
-  .branch {
-    margin:0 40px;
-    position:relative;
-  }
-  .branch::before {
-    content:"";
-    position:absolute;
-    left:-40px;
-    top:20px;
-    width:40px;
-    height:2px;
-    background:#7c8aff;
-  }
-  .branch:first-child::before { display:none; }
-  h2 {
-    background:#1c1f3a;
-    padding:10px 20px;
-    border-radius:8px;
-    margin-bottom:16px;
-    border-left:4px solid #7c8aff;
-  }
-  .node {
-    position:relative;
-    padding-left:20px;
-    margin-bottom:12px;
-  }
-  .node::before {
-    content:"";
-    position:absolute;
-    left:0;
-    top:9px;
-    width:12px;
-    height:2px;
-    background:#ccc;
-  }
-  .title { font-weight:bold; }
-  .desc { font-size:13px; color:#ccc; margin-top:4px; }
-  footer {
-    text-align:center;
-    margin-top:60px;
-    font-size:12px;
-    color:#666;
-  }
+  body { margin:0; padding:0; background:#0f1123; font-family:'Segoe UI', sans-serif; color:#fff; }
+  #network { width:100vw; height:100vh; }
+  h2 { position:absolute; top:10px; left:50%; transform:translateX(-50%); color:#a6b1ff; }
 </style>
 </head>
 <body>
-  <h1 style="text-align:center;color:#a6b1ff;">Mapa Mental de Habilidades y Herramientas</h1>
-  <div class="mindmap">
-
-    <div class="branch">
-      <h2>Soft Skills</h2>
-      <div class="node"><span class="title">Adaptabilidad</span><div class="desc">Transición efectiva de hospitalidad a IA.</div></div>
-      <div class="node"><span class="title">Atención al detalle</span><div class="desc">10+ años perfeccionando imagen y 5 en video.</div></div>
-      <div class="node"><span class="title">Resolución de problemas</span><div class="desc">Enfoque creativo‑técnico para retos complejos.</div></div>
-      <div class="node"><span class="title">Creatividad</span><div class="desc">Integración de IA en proyectos visuales, musicales y digitales.</div></div>
-      <div class="node"><span class="title">Gestión del tiempo</span><div class="desc">Coordinación simultánea de proyectos (15+ años).</div></div>
-      <div class="node"><span class="title">Colaboración & Organización</span><div class="desc">Planificación y seguimiento con Whimsical + Notion.</div></div>
-    </div>
-
-    <div class="branch">
-      <h2>Hard Skills</h2>
-      <div class="node"><span class="title">Edición imagen & video</span><div class="desc">Experiencia avanzada (10+ años imagen; 5 video).</div></div>
-      <div class="node"><span class="title">Contenido con IA</span><div class="desc">Creación y optimización de assets multiformato.</div></div>
-      <div class="node"><span class="title">Desarrollo web & apps</span><div class="desc">Implementación con Bolt.new y Monica.</div></div>
-      <div class="node"><span class="title">Ciberseguridad básica</span><div class="desc">Fundamentos prácticos + Kali Linux.</div></div>
-      <div class="node"><span class="title">Integración tecnológica</span><div class="desc">Sinergia entre workflows tradicionales y IA.</div></div>
-      <div class="node"><span class="title">Gestión de proyectos</span><div class="desc">Diagramas, flujos y docs con Whimsical + Notion.</div></div>
-    </div>
-
-    <div class="branch">
-      <h2>Herramientas</h2>
-      <div class="node"><span class="title">Generación de imágenes</span><div class="desc">Freepik · labs.google · DeepMind · Reve</div></div>
-      <div class="node"><span class="title">Edición de video</span><div class="desc">Youcut · Canva · VideoPad</div></div>
-      <div class="node"><span class="title">Plataformas de IA</span><div class="desc">ChatGPT · Deepseek · Perplexity</div></div>
-      <div class="node"><span class="title">Creación musical</span><div class="desc">Suno</div></div>
-      <div class="node"><span class="title">Desarrollo web & apps</span><div class="desc">Bolt.new · Monica</div></div>
-      <div class="node"><span class="title">Ciberseguridad</span><div class="desc">Kali Linux</div></div>
-      <div class="node"><span class="title">Gestión & colaboración</span><div class="desc">Whimsical · Notion</div></div>
-    </div>
-
-  </div>
-
-  <footer>Mapa mental tipo corchetes • Generado en HTML</footer>
+<h2>Mapa Mental de Habilidades y Herramientas</h2>
+<div id="network"></div>
+<script>
+const nodes = new vis.DataSet([
+  { id: 0, label: 'Mapa Mental', shape:'box', color:'#7c8aff' },
+  { id: 1, label: 'Soft Skills' },{ id: 11, label: 'Adaptabilidad' },{ id:12, label:'Atención al detalle' },{ id:13, label:'Resolución de problemas' },{ id:14, label:'Creatividad' },{ id:15, label:'Gestión del tiempo' },{ id:16, label:'Colaboración & organización' },
+  { id: 2, label: 'Hard Skills' },{ id:21, label:'Edición imagen & video' },{ id:22, label:'Contenido con IA' },{ id:23, label:'Desarrollo web & apps' },{ id:24, label:'Ciberseguridad básica' },{ id:25, label:'Integración tecnológica' },{ id:26, label:'Gestión de proyectos' },
+  { id: 3, label: 'Herramientas' },{ id:31, label:'Generación de imágenes' },{ id:32, label:'Edición de video' },{ id:33, label:'Plataformas de IA' },{ id:34, label:'Creación musical' },{ id:35, label:'Desarrollo web & apps' },{ id:36, label:'Ciberseguridad' },{ id:37, label:'Gestión & colaboración' }
+]);
+const edges = new vis.DataSet([
+  { from:0, to:1 },{ from:0, to:2 },{ from:0, to:3 },
+  { from:1,to:11},{ from:1,to:12},{ from:1,to:13},{ from:1,to:14},{ from:1,to:15},{ from:1,to:16 },
+  { from:2,to:21},{ from:2,to:22},{ from:2,to:23},{ from:2,to:24},{ from:2,to:25},{ from:2,to:26 },
+  { from:3,to:31},{ from:3,to:32},{ from:3,to:33},{ from:3,to:34},{ from:3,to:35},{ from:3,to:36},{ from:3,to:37 }
+]);
+const container = document.getElementById('network');
+const data = { nodes, edges };
+const options = {
+  layout:{ hierarchical:{ direction:'LR', sortMethod:'directed', nodeSpacing:200 } },
+  nodes:{ shape:'box', font:{ size:14 }, borderWidth:2 },
+  edges:{ smooth:true, arrows:{ to:false } },
+  physics:false,
+  interaction:{ hover:true }
+};
+new vis.Network(container, data, options);
+</script>
 </body>
 </html>
 
